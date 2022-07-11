@@ -1,0 +1,10 @@
+#header {
+    height: 200px;
+    background-color: brown;
+}
+
+span {
+    font-size: 40px;
+    font-weight: bold;
+    vertical-align: center;
+}
