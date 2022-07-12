@@ -3,7 +3,7 @@ import DishCard from "./DishCard";
 
 function DishPage ({dishes}) {
     return (
-        <div>
+        <div className="grid">
             {dishes.map(dish => {
                 return <DishCard key={dish.id} dish={dish}/>
             })}
