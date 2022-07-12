@@ -1,18 +1,37 @@
-function DishForm () {
+function DishForm ({submitForm, formData, setFormData}) {
 
+    function handleChange (e) {
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value})
+    }
 
     return (
-        <form id="new-dish">
-            <input id="new-name" placeholder="Name">
-            </input>
+        <form id="new-dish" onSubmit={(e) => {
+            e.preventDefault()
+            submitForm()}}>
+            <input id="new-name" placeholder="Name" type="text" name="name" value={formData.name} onChange={handleChange}></input>
             <br></br>
-            <input id="new-description" placeholder="Description"></input>
+            <input id="new-description" placeholder="Description" type="text" name="description" value={formData.description} onChange={handleChange}></input>
             <br></br>
-            <input id="new-image-url" placeholder="Image URL"></input>
+            <input id="new-image-url" placeholder="Image URL" type="text" name="image" value={formData.image} onChange={handleChange}></input>
             <br></br>
-            <input id="new-spice" placeholder="Spice"></input>
+            <select id="new-spice" placeholder="Spice" type="text" name="spice_id" value={formData.spice_id} onChange={handleChange}>
+                <option value="1">Cumin</option>
+                <option value="2">Red Pepper Flakes</option>
+                <option value="3">Turmeric</option>
+                <option value="4">Black Pepper</option>
+                <option value="5">Oregano</option>
+            </select>
             <br></br>
-            <input id="new-cuisine" placeholder="Cuisine"></input>
+            <select id="new-cuisine" placeholder="Cuisine" type="text" name="cuisine_id" value={formData.cuisine_id} onChange={handleChange}>
+            <option value="1">Italian</option>
+            <option value="2">Korean</option>
+            <option value="3">Chinese</option>
+            <option value="4">Middle Eastern</option>
+            <option value="5">Indian</option>
+            </select>
+            <br></br>
+            <button>Drop it in!</button>
         </form>
     )
 }

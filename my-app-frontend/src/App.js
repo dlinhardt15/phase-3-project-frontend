@@ -14,13 +14,34 @@ function App() {
     .then((r) => r.json())
     .then((data) => setDishes(data))}, [])
   
+  const initialValues = {
+    name: "",
+    description: "",
+    image: "",
+    spice_id: 0,
+    cuisine_id: 0
+  }
+  const [formData, setFormData] = useState(initialValues)
 
+  function submitForm () {
+    fetch("http://localhost:9292/dishes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({...formData})
+    })
+    .then(response => response.json())
+    .then(data => setDishes([...dishes, data]))
+
+    setFormData(initialValues)
+  }
   return (
     <div className="App">
       <Header />
       <Switch>
       <Route path="/form">
-        <DishForm/>
+        <DishForm submitForm={submitForm} formData={formData} setFormData={setFormData}/>
       </Route>
       <Route path="/">
         <DishPage dishes={dishes}/>
