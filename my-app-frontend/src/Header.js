@@ -1,4 +1,5 @@
 import "./Header.css";
+import {NavLink} from "react-router-dom"
 
 function Header () {
 
@@ -7,7 +8,14 @@ function Header () {
             <br></br>
             <br></br>
             <br></br>
-            <span>Spice It Up!</span>
+            <NavLink to="/">
+            <span id="title">
+                Spice It Up!
+            </span>
+            </NavLink>
+            <NavLink to="/form">
+                <span id="new-dish-button">Add a Dish!</span>
+            </NavLink>
         </div>
     )
 };

@@ -8,3 +8,17 @@ span {
     font-weight: bold;
     vertical-align: center;
 }
+
+#title {
+    float: left;
+    text-align: left;
+    margin-left: 100px;
+    color: white; 
+}
+
+#new-dish-button {
+    float: right;
+    text-align: right;
+    margin-right: 100px;
+    color: white; 
+}

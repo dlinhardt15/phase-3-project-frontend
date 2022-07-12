@@ -1,7 +1,9 @@
 import './App.css';
 import React, {useEffect, useState} from "react";
 import Header from "./Header.js";
-import DishPage from "./DishPage.js"
+import DishPage from "./DishPage.js";
+import DishForm from "./DishForm.js";
+import {Switch, Route} from "react-router-dom";
 
 function App() {
   
@@ -16,7 +18,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <DishPage dishes={dishes}/>
+      <Switch>
+      <Route path="/form">
+        <DishForm/>
+      </Route>
+      <Route path="/">
+        <DishPage dishes={dishes}/>
+      </Route>
+      </Switch>
     </div>
   );
 }
