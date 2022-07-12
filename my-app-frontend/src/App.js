@@ -36,6 +36,12 @@ function App() {
 
     setFormData(initialValues)
   }
+  function onRemoveDish(deletedDish) {
+    const dishesToDisplay = dishes.filter(dish => dish !== deletedDish)
+    setDishes(dishesToDisplay)
+}
+
+
   return (
     <div className="App">
       <Header />
@@ -44,7 +50,7 @@ function App() {
         <DishForm submitForm={submitForm} formData={formData} setFormData={setFormData}/>
       </Route>
       <Route path="/">
-        <DishPage dishes={dishes}/>
+        <DishPage dishes={dishes} onRemoveDish={onRemoveDish}/>
       </Route>
       </Switch>
     </div>
