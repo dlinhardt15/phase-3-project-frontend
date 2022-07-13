@@ -22,3 +22,10 @@ span {
     margin-right: 100px;
     color: white; 
 }
+
+#new-cuisine-button {
+    float: center;
+    text-align: center;
+    margin-right: 100px;
+    color: white;
+}

@@ -1,10 +1,12 @@
-function DishForm ({submitForm, formData, setFormData}) {
+function DishForm ({submitForm, formData, setFormData, cuisines}) {
 
     function handleChange (e) {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value})
     }
-
+    const cuisineOptions = cuisines.map((cuisine) => {
+        return <option value={cuisine.id}>{cuisine.name}</option>
+    })
     return (
         <form id="new-dish" onSubmit={(e) => {
             e.preventDefault()
@@ -24,11 +26,7 @@ function DishForm ({submitForm, formData, setFormData}) {
             </select>
             <br></br>
             <select id="new-cuisine" placeholder="Cuisine" type="text" name="cuisine_id" value={formData.cuisine_id} onChange={handleChange}>
-            <option value="1">Italian</option>
-            <option value="2">Korean</option>
-            <option value="3">Chinese</option>
-            <option value="4">Middle Eastern</option>
-            <option value="5">Indian</option>
+                {cuisineOptions}
             </select>
             <br></br>
             <button>Drop it in!</button>

@@ -4,6 +4,7 @@ import Header from "./Header.js";
 import DishPage from "./DishPage.js";
 import DishForm from "./DishForm.js";
 import {Switch, Route} from "react-router-dom";
+import CuisineForm from "./CuisineForm.js";
 
 function App() {
   
@@ -22,7 +23,7 @@ function App() {
     cuisine_id: 0
   }
   const [formData, setFormData] = useState(initialValues)
-
+  const [description, setDescription] = useState("")
   function submitForm () {
     fetch("http://localhost:9292/dishes", {
       method: "POST",
@@ -39,18 +40,68 @@ function App() {
   function onRemoveDish(deletedDish) {
     const dishesToDisplay = dishes.filter(dish => dish !== deletedDish)
     setDishes(dishesToDisplay)
-}
+  }
+  function editDescription (id) {
+    
+    fetch("http://localhost:9292/dishes/" + id, {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({description: description})
+    })
+    .then(response => response.json())
+    .then(data => updateDishes(data))
 
+    setDescription("")
+  }
+
+  const [cuisines, setCuisines] = useState([])
+  const [cuisineFormData, setCuisineFormData] = useState({})
+
+  function submitCuisineForm () {
+    fetch("http://localhost:9292/cuisines", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({...cuisineFormData})
+    })
+    .then(response => response.json())
+    .then(data => setCuisines([...cuisines, data]))
+
+    setCuisineFormData({})
+  }
+
+    useEffect(() => {
+        fetch("http://localhost:9292/cuisines")
+        .then(response => response.json())
+        .then(data => setCuisines(data))
+    }, [])
+
+  function updateDishes (updatedDish) {
+    const updatedDishes = dishes.map(dish => {
+      if (dish.id === updatedDish.id) {
+        return updatedDish
+      } else {
+        return dish
+      }
+    })
+    setDishes(updatedDishes)
+  }
 
   return (
     <div className="App">
       <Header />
       <Switch>
-      <Route path="/form">
-        <DishForm submitForm={submitForm} formData={formData} setFormData={setFormData}/>
+      <Route path="/dishform">
+        <DishForm cuisines={cuisines} submitForm={submitForm} formData={formData} setFormData={setFormData}/>
+      </Route>
+      <Route path="/cuisineform">
+        <CuisineForm submitCuisineForm={submitCuisineForm} cuisineFormData={cuisineFormData} setCuisineFormData={setCuisineFormData}/>
       </Route>
       <Route path="/">
-        <DishPage dishes={dishes} onRemoveDish={onRemoveDish}/>
+        <DishPage dishes={dishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
       </Route>
       </Switch>
     </div>
