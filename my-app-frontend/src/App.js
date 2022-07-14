@@ -13,8 +13,12 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:9292/dishes")
     .then((r) => r.json())
-    .then((data) => setDishes(data))}, [])
+    .then((data) => {
+      setDishes(data)
+      setShownDishes(data)})}, [])
   
+  const [shownDishes, setShownDishes] = useState(dishes)
+
   const initialValues = {
     name: "",
     description: "",
@@ -91,7 +95,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header dishes={dishes}/>
+      <Header shownDishes={shownDishes} setShownDishes={setShownDishes} dishes={dishes}/>
       <Switch>
       <Route path="/dishform">
         <DishForm cuisines={cuisines} submitForm={submitForm} formData={formData} setFormData={setFormData}/>
@@ -100,7 +104,7 @@ function App() {
         <CuisineForm submitCuisineForm={submitCuisineForm} cuisineFormData={cuisineFormData} setCuisineFormData={setCuisineFormData}/>
       </Route>
       <Route path="/">
-        <DishPage cuisines={cuisines} dishes={dishes} setDishes={setDishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
+        <DishPage shownDishes={shownDishes} setShownDishes={setShownDishes} cuisines={cuisines} dishes={dishes} setDishes={setDishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
       </Route>
       </Switch>
     </div>

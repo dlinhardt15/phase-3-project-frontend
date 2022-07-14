@@ -1,13 +1,7 @@
 import "./Header.css";
 import {NavLink} from "react-router-dom";
 
-function Header ({setDishes}) {
-    
-    function resetDishes () {
-            fetch("http://localhost:9292/dishes")
-            .then((r) => r.json())
-            .then((data) => setDishes(data))
-    }
+function Header ({dishes, setShownDishes}) {
 
     return (
         <div id="header">
@@ -15,7 +9,7 @@ function Header ({setDishes}) {
             <br></br>
             <br></br>
             <NavLink to="/">
-            <span id="title" onClick={() => resetDishes}>
+            <span id="title" onClick={() => setShownDishes(dishes)}>
                 Spice It Up!
             </span>
             </NavLink>
