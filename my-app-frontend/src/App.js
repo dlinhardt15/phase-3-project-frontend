@@ -78,8 +78,6 @@ function App() {
     setCuisineFormData({})
   }
 
-    
-
   function updateDishes (updatedDish) {
     const updatedDishes = dishes.map(dish => {
       if (dish.id === updatedDish.id) {
@@ -93,7 +91,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header dishes={dishes}/>
       <Switch>
       <Route path="/dishform">
         <DishForm cuisines={cuisines} submitForm={submitForm} formData={formData} setFormData={setFormData}/>
@@ -102,7 +100,7 @@ function App() {
         <CuisineForm submitCuisineForm={submitCuisineForm} cuisineFormData={cuisineFormData} setCuisineFormData={setCuisineFormData}/>
       </Route>
       <Route path="/">
-        <DishPage cuisines={cuisines} dishes={dishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
+        <DishPage cuisines={cuisines} dishes={dishes} setDishes={setDishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
       </Route>
       </Switch>
     </div>
