@@ -1,13 +1,12 @@
 import "./DishPage.css";
 import DishCard from "./DishCard";
-import {useState} from "react";
 
-function DishPage ({cuisines, dishes, shownDishes, setShownDishes, onRemoveDish, editDescription, setDescription, description}) {
+function DishPage ({spices, cuisines, dishes, shownDishes, setShownDishes, onRemoveDish, editDescription, setDescription, description}) {
     
     
 
     const cuisineOptions = cuisines.map((cuisine) => {
-        return <span value={cuisine.id} key={cuisine.id} onClick={() => filterDishes(cuisine)}>{cuisine.name}</span>
+        return <span id="cuisine-option" value={cuisine.id} key={cuisine.id} onClick={() => filterDishes(cuisine)}>{cuisine.name}</span>
     })
 
     function filterDishes (cuisine) {
@@ -23,7 +22,7 @@ function DishPage ({cuisines, dishes, shownDishes, setShownDishes, onRemoveDish,
             <br></br>
             <div className="grid">
                 {shownDishes.map(dish => {
-                    return <DishCard key={dish.id} dish={dish} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
+                    return <DishCard cuisines={cuisines}spices={spices} key={dish.id} dish={dish} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
             })}
             </div>
         </div> 

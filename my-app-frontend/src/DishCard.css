@@ -1,0 +1,15 @@
+#dish-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: brown;
+}
+
+img {
+    border-radius: 30%;
+    box-shadow: 10px 10px 5px brown;
+}
+
+#dish-details {
+    width: 256px;
+    margin-left: 73.625px;
+}
