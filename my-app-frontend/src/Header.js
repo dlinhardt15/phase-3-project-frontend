@@ -6,7 +6,7 @@ function Header ({dishes, setShownDishes}) {
     return (
         <div id="header">
             <br></br>
-            <br></br>
+            <div id="main-header">The Spice Rack</div>
             <br></br>
             <NavLink to="/">
             <span id="title" onClick={() => setShownDishes(dishes)}>

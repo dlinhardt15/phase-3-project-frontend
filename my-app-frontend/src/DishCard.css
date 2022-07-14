@@ -1,7 +1,11 @@
 #dish-name {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     color: brown;
+}
+
+img:hover {
+    width: 70%;
 }
 
 img {
@@ -13,3 +17,4 @@ img {
     width: 256px;
     margin-left: 73.625px;
 }
+

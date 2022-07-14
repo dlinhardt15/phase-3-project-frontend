@@ -22,6 +22,7 @@ function DishCard ({cuisines, dish, onRemoveDish, editDescription, setDescriptio
     function handleDescription(e) {
         e.stopPropagation()
         setDescriptionToggle(descriptionToggle ? false : true)
+        setToggle(false)
     }
 
     function submitDescription (e) {
@@ -39,11 +40,9 @@ function DishCard ({cuisines, dish, onRemoveDish, editDescription, setDescriptio
                 <div id="dish-cuisine"><strong>Cuisine: </strong>{cuisines[dish.cuisine_id - 1].name}</div>
                 <div id="dish-spice"><strong>Spice: </strong>{spices[dish.spice_id - 1].name}</div>
                 <div id="spice-description"><strong>Spice Flavor Profile: </strong>{spices[dish.spice_id - 1].flavor_profile}</div>
+                <button onClick={handleRemove} className="deletebtn">Delete Dish</button>
+                <button onClick={handleEdit} className="edit-btn">Edit Description</button>
             </div>
-            <br></br>
-            <br></br>
-            <button onClick={handleRemove} className="deletebtn">Delete Dish</button>
-            <button onClick={handleEdit} className="edit-btn">Edit Description</button>
             <form id="edit-description-form"  onSubmit={(e) => {
                 e.preventDefault()
                 editDescription(dish.id)

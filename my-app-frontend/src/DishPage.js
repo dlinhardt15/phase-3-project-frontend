@@ -15,7 +15,7 @@ function DishPage ({spices, cuisines, dishes, shownDishes, setShownDishes, onRem
     }
 
     return (
-        <div>
+        <div id="background">
             <div id="filter-option">
                 {cuisineOptions}
             </div>

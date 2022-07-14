@@ -30,7 +30,7 @@ function DishForm ({submitForm, formData, setFormData, cuisines}) {
                 {cuisineOptions}
             </select>
             <br></br>
-            <button>Drop it in!</button>
+            <button id="add-dish">Drop it in!</button>
         </form>
     )
 }
