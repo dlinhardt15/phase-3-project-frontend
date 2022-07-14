@@ -19,8 +19,8 @@ function App() {
     name: "",
     description: "",
     image: "",
-    spice_id: 0,
-    cuisine_id: 0
+    spice_id: "",
+    cuisine_id: ""
   }
   const [formData, setFormData] = useState(initialValues)
   const [description, setDescription] = useState("")
@@ -58,7 +58,12 @@ function App() {
 
   const [cuisines, setCuisines] = useState([])
   const [cuisineFormData, setCuisineFormData] = useState({})
-
+  useEffect(() => {
+      fetch("http://localhost:9292/cuisines")
+      .then(response => response.json())
+      .then(data => setCuisines(data))
+    }, [])
+  
   function submitCuisineForm () {
     fetch("http://localhost:9292/cuisines", {
       method: "POST",
@@ -73,11 +78,7 @@ function App() {
     setCuisineFormData({})
   }
 
-    useEffect(() => {
-        fetch("http://localhost:9292/cuisines")
-        .then(response => response.json())
-        .then(data => setCuisines(data))
-    }, [])
+    
 
   function updateDishes (updatedDish) {
     const updatedDishes = dishes.map(dish => {
@@ -101,7 +102,7 @@ function App() {
         <CuisineForm submitCuisineForm={submitCuisineForm} cuisineFormData={cuisineFormData} setCuisineFormData={setCuisineFormData}/>
       </Route>
       <Route path="/">
-        <DishPage dishes={dishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
+        <DishPage cuisines={cuisines} dishes={dishes} onRemoveDish={onRemoveDish} editDescription={editDescription} setDescription={setDescription} description={description}/>
       </Route>
       </Switch>
     </div>

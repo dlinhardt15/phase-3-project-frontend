@@ -7,6 +7,7 @@ function DishForm ({submitForm, formData, setFormData, cuisines}) {
     const cuisineOptions = cuisines.map((cuisine) => {
         return <option value={cuisine.id}>{cuisine.name}</option>
     })
+
     return (
         <form id="new-dish" onSubmit={(e) => {
             e.preventDefault()

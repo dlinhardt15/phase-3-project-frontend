@@ -29,3 +29,11 @@ span {
     margin-right: 100px;
     color: white;
 }
+
+span {
+    margin: 1em;
+    margin: 0 0 0.5em 0;
+    padding: 15px;
+    display: inline-block;
+    justify-content: center;
+}
